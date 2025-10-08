@@ -1,0 +1,50 @@
+@startuml Train_Communication_Style_Sequence
+actor User
+participant App
+participant GhostWriterSystem
+participant Profile
+participant Database
+participant Analyzer
+participant AIModel
+
+User -> App: Navigate to "Profile Setup"
+App -> User: Display Profile Setup section
+User -> App: Click "Upload Previous Conversations"
+App -> User: Display supported platforms\nand formats
+User -> App: Select conversation files\nor grant permission
+App -> GhostWriterSystem: Submit conversation data
+GhostWriterSystem -> Database: Store conversation data
+Database --> GhostWriterSystem: Confirm storage
+GhostWriterSystem -> App: Display "Upload successful"
+App -> User: Show "Upload successful"
+
+GhostWriterSystem -> Analyzer: Begin style analysis
+Analyzer -> Database: Retrieve uploaded conversations
+Database --> Analyzer: Conversation data
+Analyzer -> Analyzer: Analyze writing patterns
+Analyzer -> Analyzer: Analyze vocabulary
+Analyzer -> Analyzer: Analyze response style
+Analyzer -> Analyzer: Calculate confidence score
+Analyzer --> GhostWriterSystem: Analysis complete
+
+GhostWriterSystem -> AIModel: Train on communication style
+AIModel -> AIModel: Learn patterns
+AIModel --> GhostWriterSystem: Training complete
+
+GhostWriterSystem -> Profile: Update communication profile
+Profile -> Profile: Store style data
+Profile -> Database: Save updated profile
+Database --> Profile: Confirm save
+Profile --> GhostWriterSystem: Profile updated
+
+GhostWriterSystem -> App: Analysis complete with confidence %
+App -> User: Display "Communication profile\ncreated successfully"
+App -> User: Show confidence percentage
+User -> App: Review profile
+User -> App: Approve profile
+App -> GhostWriterSystem: Profile approved
+GhostWriterSystem -> Profile: Mark as approved
+Profile -> Database: Update status
+Database --> Profile: Confirm
+
+@enduml

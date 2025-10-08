@@ -1,0 +1,24 @@
+@startuml Daily_Summary_Activity
+|System|
+start
+:User-Defined Time Reached;
+:Compile All Conversations
+from the Day;
+:Analyze Message Content;
+:Identify Key Topics;
+:Identify Important Information;
+:Identify Action Items;
+:Generate Concise Summary;
+:Highlight Main
+Conversation Points;
+:Highlight Urgent Matters;
+:Send Summary Notification
+to User's Device;
+|User|
+:Receive Notification;
+:Open App;
+:Review Daily Summary;
+:Catch Up on All Conversations
+Without Reading Individual Messages;
+stop
+@enduml

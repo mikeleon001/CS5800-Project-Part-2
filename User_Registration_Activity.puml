@@ -1,0 +1,33 @@
+@startuml User_Registration_Activity
+start
+:User Opens App;
+:App Launches;
+:Display Logo;
+:Show Main Page with
+Log In and Create Account buttons;
+:User Clicks "Create Account";
+:Display Registration Form;
+:User Enters Username;
+:System Checks Username Availability;
+if (Username Available?) then (yes)
+  :Display "Username Available";
+else (no)
+  :Display "Username Taken";
+  stop
+endif
+:User Enters Password;
+:User Confirms Password;
+:User Enters Email;
+:User Clicks "Register";
+:System Validates Information;
+if (Information Valid?) then (yes)
+  :System Creates Account;
+  :Display "Registration Successful!
+  Welcome to GhostWriter AI";
+  :Show Option to Proceed to Setup;
+else (no)
+  :Display Error Message;
+  stop
+endif
+stop
+@enduml

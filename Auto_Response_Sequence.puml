@@ -1,0 +1,57 @@
+@startuml Auto_Response_Sequence
+actor Contact
+participant Platform
+participant GhostWriterSystem
+participant Message
+participant Analyzer
+participant Profile
+participant Database
+participant AIModel
+participant Response
+participant Schedule
+
+Contact -> Platform: Send message to User
+Platform -> GhostWriterSystem: Forward incoming message
+GhostWriterSystem -> Message: Create message object
+Message -> Database: Store message
+Database --> Message: Confirm storage
+
+GhostWriterSystem -> Analyzer: Analyze message
+Analyzer -> Message: Get content
+Message --> Analyzer: Return content
+Analyzer -> Analyzer: Analyze context\nand sentiment
+Analyzer -> Profile: Get User's communication profile
+Profile -> Database: Retrieve profile data
+Database --> Profile: Return profile
+Profile --> Analyzer: Communication style data
+Analyzer -> Database: Get conversation history
+Database --> Analyzer: Return history
+Analyzer --> GhostWriterSystem: Analysis complete
+
+GhostWriterSystem -> AIModel: Generate response
+AIModel -> Profile: Get personalization data
+Profile --> AIModel: Style parameters
+AIModel -> AIModel: Generate contextual response
+AIModel --> GhostWriterSystem: Generated response
+
+GhostWriterSystem -> Response: Create response object
+Response -> Database: Store response
+Database --> Response: Confirm storage
+
+GhostWriterSystem -> Schedule: Schedule delayed sending
+Schedule -> Schedule: Calculate random delay\n(2-53 min)
+Schedule -> Schedule: Add to queue
+Schedule --> GhostWriterSystem: Scheduled
+
+note over Schedule: Wait for scheduled time
+
+Schedule -> Response: Retrieve response
+Response --> Schedule: Response content
+Schedule -> Platform: Send response
+Platform -> Contact: Deliver message
+Contact -> Contact: Receive authentic reply
+Platform --> Schedule: Delivery confirmed
+Schedule -> Database: Log successful delivery
+Schedule -> Message: Update conversation thread
+
+@enduml

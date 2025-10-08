@@ -1,0 +1,39 @@
+@startuml User_Registration_Sequence
+actor User
+participant App
+participant GhostWriterSystem
+participant Authentication
+participant Database
+participant Account
+participant Profile
+
+User -> App: Click on GhostWriter AI app
+App -> App: Launch and display logo
+App -> User: Show main page\n(Log In, Create Account)
+User -> App: Click "Create Account"
+App -> User: Display registration form
+User -> App: Enter username
+App -> GhostWriterSystem: Check username availability
+GhostWriterSystem -> Database: Query username
+Database --> GhostWriterSystem: Username status
+GhostWriterSystem --> App: "Username available"
+App -> User: Display "Username available"
+User -> App: Enter password and confirm
+User -> App: Enter email
+User -> App: Click "Register"
+App -> GhostWriterSystem: Submit registration data
+GhostWriterSystem -> Authentication: Validate information
+Authentication --> GhostWriterSystem: Validation successful
+GhostWriterSystem -> Account: Create account
+Account -> Database: Store account data
+Database --> Account: Confirm storage
+Account --> GhostWriterSystem: Account created
+GhostWriterSystem -> Profile: Create default profile
+Profile -> Database: Store profile
+Database --> Profile: Confirm storage
+Profile --> GhostWriterSystem: Profile created
+GhostWriterSystem --> App: Registration successful
+App -> User: Display "Registration successful!\nWelcome to GhostWriter AI"
+App -> User: Show option to proceed to setup
+
+@enduml

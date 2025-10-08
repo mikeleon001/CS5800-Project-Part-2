@@ -1,0 +1,26 @@
+@startuml Auto_Response_Activity
+|Contact|
+start
+:Send Message to User;
+|System|
+:Detect Incoming Message;
+:Analyze Content for
+Context and Sentiment;
+:Access User's
+Communication Profile;
+:Access Conversation History;
+:Generate Personalized Response;
+:Match User's Writing
+Style and Tone;
+:Calculate Random Delay
+(2-53 minutes);
+:Schedule Response;
+:Wait for Scheduled Time;
+:Automatically Send Response;
+|Contact|
+:Receive Authentic Reply;
+|System|
+:Log Successful Delivery;
+:Update Conversation Thread;
+stop
+@enduml
